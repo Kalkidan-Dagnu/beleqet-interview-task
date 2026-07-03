@@ -1,6 +1,15 @@
 {
-  "buildCommand": "cd beleqet-jobs-nextjs && npm install && npm run build",
-  "outputDirectory": "beleqet-jobs-nextjs/.next",
-  "framework": "nextjs",
-  "installCommand": "cd beleqet-jobs-nextjs && npm install"
+  "version": 2,
+  "builds": [
+    {
+      "src": "beleqet-jobs-nextjs/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "beleqet-jobs-nextjs/$1"
+    }
+  ]
 }
