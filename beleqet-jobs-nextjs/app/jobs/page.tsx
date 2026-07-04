@@ -37,8 +37,8 @@ export default async function JobsPage() {
 
   try {
     const [jobsRes, catsRes] = await Promise.all([getJobs({ limit: 50 }), getCategories()]);
-    initialJobs = jobsRes.items.map(toDisplayJob);
-    initialCategories = catsRes.map(toDisplayCategory);
+    initialJobs = jobsRes.items.length > 0 ? jobsRes.items.map(toDisplayJob) : mockJobs;
+    initialCategories = catsRes.length > 0 ? catsRes.map(toDisplayCategory) : mockCategories;
   } catch {
     initialJobs = mockJobs;
     initialCategories = mockCategories;

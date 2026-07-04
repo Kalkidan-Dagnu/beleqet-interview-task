@@ -37,13 +37,12 @@ export default async function CategoryGrid() {
 
   try {
     const apiCategories = await getCategories();
-    categories = apiCategories.map((cat) => ({
+    categories = apiCategories.length > 0 ? apiCategories.map((cat) => ({
       id: cat.slug,
       label: cat.label,
       count: cat._count?.jobs?.toLocaleString() ?? "0",
       icon: slugIconMap[cat.slug] ?? "more-horizontal",
-    }));
-    if (categories.length === 0) categories = mockCategories;
+    })) : mockCategories;
   } catch {
     categories = mockCategories;
   }

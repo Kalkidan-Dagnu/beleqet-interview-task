@@ -25,8 +25,8 @@ export default async function FeaturedJobs() {
     const res = await getJobs({ limit: 5 });
     featured = res.items.filter((j) => j.featured).slice(0, 5).map(toDisplayJob);
     if (featured.length === 0) featured = res.items.slice(0, 5).map(toDisplayJob);
+    if (featured.length === 0) featured = mockJobs.filter((j) => j.featured);
   } catch {
-    // Fall back to mock data if API is not reachable
     featured = mockJobs.filter((j) => j.featured);
   }
 
