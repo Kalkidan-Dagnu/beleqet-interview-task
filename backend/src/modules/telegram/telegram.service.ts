@@ -13,8 +13,8 @@ export class TelegramService implements OnModuleInit, OnModuleDestroy {
     private prisma: PrismaService,
   ) {
     const token = this.config.get<string>('TELEGRAM_BOT_TOKEN');
-    // If you type something like 'your_bot_token_here', don't crash
-    if (token && token !== 'your_bot_token_here') {
+    const invalidTokens = ['your_bot_token_here', 'placeholder', '', undefined];
+    if (token && !invalidTokens.includes(token) && token.includes(':')) {
       this.bot = new Telegraf(token);
     }
   }
